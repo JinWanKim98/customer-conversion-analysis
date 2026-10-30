@@ -1,0 +1,54 @@
+{
+  "data_kind": "illustrative future planning assumptions; not observed outcomes",
+  "method": "Independent two-proportion z-test normal approximation; pooled null variance and unpooled alternative; no continuity correction",
+  "allocation": "1:1 independent customers",
+  "baseline_is_measured": false,
+  "historical_tv_session_rate_is_not_customer_baseline": true,
+  "rows": [
+    {
+      "baseline_probability_assumed": 0.02,
+      "treatment_probability_at_mde": 0.022,
+      "absolute_mde_pp": 0.2,
+      "relative_mde_pct": 10.0,
+      "alpha_two_sided": 0.05,
+      "target_power": 0.8,
+      "n_per_arm": 80682,
+      "total_n": 161364,
+      "power_at_n": 0.8000039723550237,
+      "power_at_n_minus_one": 0.7999991116595638,
+      "independent_formula_matches": true
+    },
+    {
+      "baseline_probability_assumed": 0.02,
+      "treatment_probability_at_mde": 0.024,
+      "absolute_mde_pp": 0.4,
+      "relative_mde_pct": 20.0,
+      "alpha_two_sided": 0.05,
+      "target_power": 0.8,
+      "n_per_arm": 21109,
+      "total_n": 42218,
+      "power_at_n": 0.8000124209150027,
+      "power_at_n_minus_one": 0.7999938413872011,
+      "independent_formula_matches": true
+    },
+    {
+      "baseline_probability_assumed": 0.02,
+      "treatment_probability_at_mde": 0.026000000000000002,
+      "absolute_mde_pp": 0.6,
+      "relative_mde_pct": 30.0,
+      "alpha_two_sided": 0.05,
+      "target_power": 0.8,
+      "n_per_arm": 9798,
+      "total_n": 19596,
+      "power_at_n": 0.8000299698902573,
+      "power_at_n_minus_one": 0.7999899381685652,
+      "independent_formula_matches": true
+    }
+  ],
+  "chosen_example_mde_pp": 0.4,
+  "versions": {
+    "scipy": "1.11.4",
+    "statsmodels": "0.14.0"
+  },
+  "limitation": "Primary-endpoint illustration only. Re-estimate contemporary customer baseline/traffic and size guardrails before launch. Independence, complete outcomes and no interference assumed."
+}

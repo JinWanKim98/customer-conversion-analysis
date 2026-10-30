@@ -1,0 +1,13 @@
+{
+  "review_date": "2026-10-28",
+  "metadata_url": "https://www.kaggle.com/api/v1/datasets/list?search=ecommerce-events-history-in-electronics-store",
+  "dataset": {
+    "ref": "mkechinov/ecommerce-events-history-in-electronics-store",
+    "title": "eCommerce events history in electronics store",
+    "url": "https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-electronics-store",
+    "licenseName": "Data files \u00a9 Original Authors",
+    "lastUpdated": "2021-03-29T06:11:07.19Z"
+  },
+  "response_sha256": "d6a09a27092449de88a3be80abc26ce460c878ba793651fad8c8ae3ffe74dcc9",
+  "interpretation": "Dataset metadata states original-author copyright; no permissive redistribution license captured. Raw data will not be included in any project package."
+}

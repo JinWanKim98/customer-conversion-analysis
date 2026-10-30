@@ -1,0 +1,635 @@
+{
+  "chapter": "08",
+  "created_at_utc": "2026-10-29T17:16:06.708730+00:00",
+  "data_kind": "actual_full_REES46_curated_and_preserved_raw",
+  "model_sha256": "bc2456b56d630c26b1ce15fa9e04b9184c196d5d8eebc23562576356d30284a6",
+  "source_hashes": {
+    "data/raw/rees46/events.csv": "2030b8347da2cc32f40c701b0cf21f9968a58780f940d30f3e32b17932e37544",
+    "data/raw/hillstrom/hillstrom.csv.gz": "bab6578f60db5d792f1c2372c502f029152a5249cf5ea84390f3b7f885d7234f"
+  },
+  "model_read_only": true,
+  "raw_unchanged": true,
+  "plan": {
+    "chapter": "08",
+    "written_before_chapter08_computation": true,
+    "status": "exploratory_follow_up_to_chapter07_not_preregistered_confirmation",
+    "session_gaps_seconds": [
+      1800,
+      3600
+    ],
+    "windows_days": [
+      1,
+      3,
+      7
+    ],
+    "event_policies": [
+      "raw nine-field rows",
+      "exact nine-field deduplicated canonical events"
+    ],
+    "matched_window_population": "first-view/first-cart anchors eligible for the full seven days; same anchors for all windows",
+    "matched_session_population": "fixed primary 30-minute view-entered user-session-product anchors whose containing 60-minute session has a complete close buffer; re-evaluate strictly later cart and purchase within each containing 30/60-minute session",
+    "native_session_caution": "native 30/60-minute metrics change both session grouping and group denominator, even on identical source events",
+    "targets": [
+      "TV",
+      "Video cards",
+      "Unknown category",
+      "Price 1000+"
+    ],
+    "target_definitions": [
+      "category_code = electronics.video.tv",
+      "category_code = computers.components.videocards",
+      "trim(category_code) is empty",
+      "first-view price_value >= 1000"
+    ],
+    "uncertainty_unit": "primary completed 30-minute view-entered user-session-product groups",
+    "uncertainty_estimands": "ratio-of-sums target ordered-purchase proportion, complement proportion, and target-minus-complement percentage-point gap",
+    "resampling": "ordinary nonparametric cluster bootstrap; sample G observed clusters with replacement, carrying all of each cluster's groups together",
+    "clustering_variants": [
+      "user ID (primary)",
+      "product ID (separate one-way sensitivity, not joint two-way adjustment)"
+    ],
+    "replicates": 2000,
+    "seed": 8028,
+    "interval": "95% marginal percentile, linear 2.5 and 97.5 quantiles",
+    "implementation": "compress identical per-cluster count vectors, then draw their multiplicities from Multinomial(G, frequency/G); exactly equivalent in distribution to resampling individual clusters",
+    "comparison_policy": "same bootstrap cluster weights for target and complement and across targets; no p-values or confirmatory significance claims; no simultaneous-family coverage claim",
+    "limitations": "post-selection exploration; conditional on the observed file and cluster-exchangeability model. Single-way user or product resampling does not jointly adjust both dependencies or temporal shocks. Neither fixes missing logs, selection bias, unstable IDs or establishes causality."
+  },
+  "profiles": {
+    "scenarios": [
+      {
+        "scenario": "fixed_anchor_30",
+        "target": "Overall",
+        "eligible_groups": 644602,
+        "cart_groups": 49450,
+        "purchase_groups": 23671,
+        "ordered_purchase_pct": 3.6721884201414206,
+        "view_to_cart_pct": 7.671400336952104,
+        "cart_to_purchase_pct": 47.8685540950455
+      },
+      {
+        "scenario": "fixed_anchor_30",
+        "target": "TV",
+        "eligible_groups": 17062,
+        "cart_groups": 596,
+        "purchase_groups": 228,
+        "ordered_purchase_pct": 1.3363028953229399,
+        "view_to_cart_pct": 3.493142656195053,
+        "cart_to_purchase_pct": 38.25503355704698
+      },
+      {
+        "scenario": "fixed_anchor_30",
+        "target": "Video cards",
+        "eligible_groups": 72085,
+        "cart_groups": 11692,
+        "purchase_groups": 4711,
+        "ordered_purchase_pct": 6.535340223347437,
+        "view_to_cart_pct": 16.21974058403274,
+        "cart_to_purchase_pct": 40.29250769757099
+      },
+      {
+        "scenario": "fixed_anchor_30",
+        "target": "Unknown category",
+        "eligible_groups": 180961,
+        "cart_groups": 9471,
+        "purchase_groups": 4778,
+        "ordered_purchase_pct": 2.6403479202701137,
+        "view_to_cart_pct": 5.2337243936538815,
+        "cart_to_purchase_pct": 50.448738253616305
+      },
+      {
+        "scenario": "fixed_anchor_30",
+        "target": "Price 1000+",
+        "eligible_groups": 5443,
+        "cart_groups": 139,
+        "purchase_groups": 50,
+        "ordered_purchase_pct": 0.9186110600771633,
+        "view_to_cart_pct": 2.553738747014514,
+        "cart_to_purchase_pct": 35.97122302158273
+      },
+      {
+        "scenario": "fixed_anchor_60",
+        "target": "Overall",
+        "eligible_groups": 644602,
+        "cart_groups": 50439,
+        "purchase_groups": 24593,
+        "ordered_purchase_pct": 3.8152224163127015,
+        "view_to_cart_pct": 7.824828343691146,
+        "cart_to_purchase_pct": 48.757905588929205
+      },
+      {
+        "scenario": "fixed_anchor_60",
+        "target": "TV",
+        "eligible_groups": 17062,
+        "cart_groups": 610,
+        "purchase_groups": 238,
+        "ordered_purchase_pct": 1.394912671433595,
+        "view_to_cart_pct": 3.5751963427499707,
+        "cart_to_purchase_pct": 39.01639344262295
+      },
+      {
+        "scenario": "fixed_anchor_60",
+        "target": "Video cards",
+        "eligible_groups": 72085,
+        "cart_groups": 11915,
+        "purchase_groups": 4884,
+        "ordered_purchase_pct": 6.77533467434279,
+        "view_to_cart_pct": 16.529097593119236,
+        "cart_to_purchase_pct": 40.990348300461605
+      },
+      {
+        "scenario": "fixed_anchor_60",
+        "target": "Unknown category",
+        "eligible_groups": 180961,
+        "cart_groups": 9663,
+        "purchase_groups": 4954,
+        "ordered_purchase_pct": 2.737606445587723,
+        "view_to_cart_pct": 5.339824603091274,
+        "cart_to_purchase_pct": 51.267722239470146
+      },
+      {
+        "scenario": "fixed_anchor_60",
+        "target": "Price 1000+",
+        "eligible_groups": 5443,
+        "cart_groups": 142,
+        "purchase_groups": 51,
+        "ordered_purchase_pct": 0.9369832812787066,
+        "view_to_cart_pct": 2.6088554106191437,
+        "cart_to_purchase_pct": 35.91549295774648
+      },
+      {
+        "scenario": "matched_window_1d",
+        "target": "Overall",
+        "eligible_groups": 532888,
+        "cart_groups": 41381,
+        "purchase_groups": 20305,
+        "ordered_purchase_pct": 3.8103691582471364,
+        "view_to_cart_pct": 7.765421627058594,
+        "cart_to_purchase_pct": 49.06841303980087
+      },
+      {
+        "scenario": "matched_window_1d",
+        "target": "TV",
+        "eligible_groups": 14956,
+        "cart_groups": 500,
+        "purchase_groups": 183,
+        "ordered_purchase_pct": 1.2235891949719175,
+        "view_to_cart_pct": 3.3431398769724527,
+        "cart_to_purchase_pct": 36.6
+      },
+      {
+        "scenario": "matched_window_1d",
+        "target": "Video cards",
+        "eligible_groups": 51139,
+        "cart_groups": 9470,
+        "purchase_groups": 3897,
+        "ordered_purchase_pct": 7.620407125677076,
+        "view_to_cart_pct": 18.518156397270186,
+        "cart_to_purchase_pct": 41.15100316789863
+      },
+      {
+        "scenario": "matched_window_1d",
+        "target": "Unknown category",
+        "eligible_groups": 154526,
+        "cart_groups": 8146,
+        "purchase_groups": 4188,
+        "ordered_purchase_pct": 2.7102235222551543,
+        "view_to_cart_pct": 5.27160477848388,
+        "cart_to_purchase_pct": 51.41173582126197
+      },
+      {
+        "scenario": "matched_window_1d",
+        "target": "Price 1000+",
+        "eligible_groups": 4660,
+        "cart_groups": 111,
+        "purchase_groups": 43,
+        "ordered_purchase_pct": 0.9227467811158798,
+        "view_to_cart_pct": 2.3819742489270386,
+        "cart_to_purchase_pct": 38.73873873873874
+      },
+      {
+        "scenario": "matched_window_3d",
+        "target": "Overall",
+        "eligible_groups": 532888,
+        "cart_groups": 42067,
+        "purchase_groups": 20854,
+        "ordered_purchase_pct": 3.9133926828902132,
+        "view_to_cart_pct": 7.894154118689105,
+        "cart_to_purchase_pct": 49.57329973613521
+      },
+      {
+        "scenario": "matched_window_3d",
+        "target": "TV",
+        "eligible_groups": 14956,
+        "cart_groups": 505,
+        "purchase_groups": 188,
+        "ordered_purchase_pct": 1.257020593741642,
+        "view_to_cart_pct": 3.376571275742177,
+        "cart_to_purchase_pct": 37.227722772277225
+      },
+      {
+        "scenario": "matched_window_3d",
+        "target": "Video cards",
+        "eligible_groups": 51139,
+        "cart_groups": 9629,
+        "purchase_groups": 4007,
+        "ordered_purchase_pct": 7.835507147187078,
+        "view_to_cart_pct": 18.82907370108919,
+        "cart_to_purchase_pct": 41.61387475334926
+      },
+      {
+        "scenario": "matched_window_3d",
+        "target": "Unknown category",
+        "eligible_groups": 154526,
+        "cart_groups": 8283,
+        "purchase_groups": 4289,
+        "ordered_purchase_pct": 2.775584691249369,
+        "view_to_cart_pct": 5.360262997812666,
+        "cart_to_purchase_pct": 51.78075576481951
+      },
+      {
+        "scenario": "matched_window_3d",
+        "target": "Price 1000+",
+        "eligible_groups": 4660,
+        "cart_groups": 113,
+        "purchase_groups": 45,
+        "ordered_purchase_pct": 0.9656652360515021,
+        "view_to_cart_pct": 2.424892703862661,
+        "cart_to_purchase_pct": 39.823008849557525
+      },
+      {
+        "scenario": "matched_window_7d",
+        "target": "Overall",
+        "eligible_groups": 532888,
+        "cart_groups": 42526,
+        "purchase_groups": 21246,
+        "ordered_purchase_pct": 3.986954106679077,
+        "view_to_cart_pct": 7.980288540931678,
+        "cart_to_purchase_pct": 49.96002445562715
+      },
+      {
+        "scenario": "matched_window_7d",
+        "target": "TV",
+        "eligible_groups": 14956,
+        "cart_groups": 506,
+        "purchase_groups": 191,
+        "ordered_purchase_pct": 1.277079433003477,
+        "view_to_cart_pct": 3.383257555496122,
+        "cart_to_purchase_pct": 37.74703557312253
+      },
+      {
+        "scenario": "matched_window_7d",
+        "target": "Video cards",
+        "eligible_groups": 51139,
+        "cart_groups": 9730,
+        "purchase_groups": 4085,
+        "ordered_purchase_pct": 7.9880326169850795,
+        "view_to_cart_pct": 19.02657462993019,
+        "cart_to_purchase_pct": 41.98355601233299
+      },
+      {
+        "scenario": "matched_window_7d",
+        "target": "Unknown category",
+        "eligible_groups": 154526,
+        "cart_groups": 8359,
+        "purchase_groups": 4365,
+        "ordered_purchase_pct": 2.8247673530667976,
+        "view_to_cart_pct": 5.409445659630094,
+        "cart_to_purchase_pct": 52.21916497188659
+      },
+      {
+        "scenario": "matched_window_7d",
+        "target": "Price 1000+",
+        "eligible_groups": 4660,
+        "cart_groups": 114,
+        "purchase_groups": 45,
+        "ordered_purchase_pct": 0.9656652360515021,
+        "view_to_cart_pct": 2.4463519313304722,
+        "cart_to_purchase_pct": 39.473684210526315
+      },
+      {
+        "scenario": "native_30",
+        "target": "Overall",
+        "eligible_groups": 644660,
+        "cart_groups": 49459,
+        "purchase_groups": 23672,
+        "ordered_purchase_pct": 3.6720131542208296,
+        "view_to_cart_pct": 7.67210622653802,
+        "cart_to_purchase_pct": 47.861865383448915
+      },
+      {
+        "scenario": "native_30",
+        "target": "TV",
+        "eligible_groups": 17065,
+        "cart_groups": 596,
+        "purchase_groups": 228,
+        "ordered_purchase_pct": 1.3360679753882214,
+        "view_to_cart_pct": 3.492528567242895,
+        "cart_to_purchase_pct": 38.25503355704698
+      },
+      {
+        "scenario": "native_30",
+        "target": "Video cards",
+        "eligible_groups": 72098,
+        "cart_groups": 11698,
+        "purchase_groups": 4712,
+        "ordered_purchase_pct": 6.5355488363061385,
+        "view_to_cart_pct": 16.225138006602126,
+        "cart_to_purchase_pct": 40.28038981022397
+      },
+      {
+        "scenario": "native_30",
+        "target": "Unknown category",
+        "eligible_groups": 180978,
+        "cart_groups": 9472,
+        "purchase_groups": 4778,
+        "ordered_purchase_pct": 2.640099901645504,
+        "view_to_cart_pct": 5.233785321972836,
+        "cart_to_purchase_pct": 50.44341216216216
+      },
+      {
+        "scenario": "native_30",
+        "target": "Price 1000+",
+        "eligible_groups": 5443,
+        "cart_groups": 139,
+        "purchase_groups": 50,
+        "ordered_purchase_pct": 0.9186110600771633,
+        "view_to_cart_pct": 2.553738747014514,
+        "cart_to_purchase_pct": 35.97122302158273
+      },
+      {
+        "scenario": "native_60",
+        "target": "Overall",
+        "eligible_groups": 635914,
+        "cart_groups": 49600,
+        "purchase_groups": 24095,
+        "ordered_purchase_pct": 3.789034366282233,
+        "view_to_cart_pct": 7.799796827872951,
+        "cart_to_purchase_pct": 48.578629032258064
+      },
+      {
+        "scenario": "native_60",
+        "target": "TV",
+        "eligible_groups": 16883,
+        "cart_groups": 597,
+        "purchase_groups": 231,
+        "ordered_purchase_pct": 1.3682402416632116,
+        "view_to_cart_pct": 3.5361014037789493,
+        "cart_to_purchase_pct": 38.69346733668342
+      },
+      {
+        "scenario": "native_60",
+        "target": "Video cards",
+        "eligible_groups": 70460,
+        "cart_groups": 11711,
+        "purchase_groups": 4785,
+        "ordered_purchase_pct": 6.791087141640647,
+        "view_to_cart_pct": 16.620777746239,
+        "cart_to_purchase_pct": 40.85902143284092
+      },
+      {
+        "scenario": "native_60",
+        "target": "Unknown category",
+        "eligible_groups": 178976,
+        "cart_groups": 9514,
+        "purchase_groups": 4872,
+        "ordered_purchase_pct": 2.7221526908635796,
+        "view_to_cart_pct": 5.315796531378509,
+        "cart_to_purchase_pct": 51.20874500735758
+      },
+      {
+        "scenario": "native_60",
+        "target": "Price 1000+",
+        "eligible_groups": 5394,
+        "cart_groups": 140,
+        "purchase_groups": 50,
+        "ordered_purchase_pct": 0.9269558769002596,
+        "view_to_cart_pct": 2.5954764553207266,
+        "cart_to_purchase_pct": 35.714285714285715
+      }
+    ],
+    "view_windows": [
+      {
+        "days": 1,
+        "population": "matched_7day",
+        "eligible_groups": 532888,
+        "cart_groups": 41381,
+        "purchase_groups": 20305,
+        "ordered_purchase_pct": 3.8103691582471364,
+        "view_to_cart_pct": 7.765421627058594,
+        "cart_to_purchase_pct": 49.06841303980087
+      },
+      {
+        "days": 3,
+        "population": "matched_7day",
+        "eligible_groups": 532888,
+        "cart_groups": 42067,
+        "purchase_groups": 20854,
+        "ordered_purchase_pct": 3.9133926828902132,
+        "view_to_cart_pct": 7.894154118689105,
+        "cart_to_purchase_pct": 49.57329973613521
+      },
+      {
+        "days": 7,
+        "population": "matched_7day",
+        "eligible_groups": 532888,
+        "cart_groups": 42526,
+        "purchase_groups": 21246,
+        "ordered_purchase_pct": 3.986954106679077,
+        "view_to_cart_pct": 7.980288540931678,
+        "cart_to_purchase_pct": 49.96002445562715
+      },
+      {
+        "days": 1,
+        "population": "native",
+        "eligible_groups": 552814,
+        "cart_groups": 43263,
+        "purchase_groups": 21201,
+        "ordered_purchase_pct": 3.8351054785153775,
+        "view_to_cart_pct": 7.825959545163473,
+        "cart_to_purchase_pct": 49.00492337563276
+      },
+      {
+        "days": 3,
+        "population": "native",
+        "eligible_groups": 546174,
+        "cart_groups": 43354,
+        "purchase_groups": 21498,
+        "ordered_purchase_pct": 3.9361082731876653,
+        "view_to_cart_pct": 7.9377634233778975,
+        "cart_to_purchase_pct": 49.58711998892836
+      },
+      {
+        "days": 7,
+        "population": "native",
+        "eligible_groups": 532888,
+        "cart_groups": 42526,
+        "purchase_groups": 21246,
+        "ordered_purchase_pct": 3.986954106679077,
+        "view_to_cart_pct": 7.980288540931678,
+        "cart_to_purchase_pct": 49.96002445562715
+      }
+    ],
+    "cart_windows": [
+      {
+        "days": 1,
+        "population": "matched_7day",
+        "eligible_groups": 43298,
+        "purchase_groups": 21284,
+        "ordered_purchase_pct": 49.15700494249157
+      },
+      {
+        "days": 3,
+        "population": "matched_7day",
+        "eligible_groups": 43298,
+        "purchase_groups": 21494,
+        "ordered_purchase_pct": 49.64201579749642
+      },
+      {
+        "days": 7,
+        "population": "matched_7day",
+        "eligible_groups": 43298,
+        "purchase_groups": 21631,
+        "ordered_purchase_pct": 49.95842764099958
+      },
+      {
+        "days": 1,
+        "population": "native",
+        "eligible_groups": 45255,
+        "purchase_groups": 22223,
+        "ordered_purchase_pct": 49.10617611313667
+      },
+      {
+        "days": 3,
+        "population": "native",
+        "eligible_groups": 44623,
+        "purchase_groups": 22158,
+        "ordered_purchase_pct": 49.656006991910004
+      },
+      {
+        "days": 7,
+        "population": "native",
+        "eligible_groups": 43298,
+        "purchase_groups": 21631,
+        "ordered_purchase_pct": 49.95842764099958
+      }
+    ],
+    "native_session_snapshots": [
+      {
+        "gap_minutes": 30,
+        "denominator": 504679,
+        "numerator": 24506,
+        "open_sessions": 31,
+        "percent": 4.855759799793532
+      },
+      {
+        "gap_minutes": 60,
+        "denominator": 494301,
+        "numerator": 24099,
+        "open_sessions": 64,
+        "percent": 4.875369461117821
+      }
+    ],
+    "fixed_anchor_monotonicity_violations": 0
+  },
+  "checks": {
+    "primary_counts_match_chapter05": true,
+    "window_population_and_nesting": true,
+    "fixed_anchor_population_and_nesting": true,
+    "all_stage_counts_nested": true
+  },
+  "raw_sensitivity": {
+    "event_rows": 885129,
+    "event_mix": {
+      "view": 793748,
+      "cart": 54035,
+      "purchase": 37346
+    },
+    "counts_by_gap_minutes": {
+      "30": {
+        "user_den": 407283,
+        "user_num": 21304,
+        "session_den": 504679,
+        "session_num": 24506,
+        "view7_den": 532888,
+        "view_cart7_num": 42526,
+        "view_cart_purchase7_num": 21246,
+        "cart7_den": 43298,
+        "cart_purchase7_num": 21631,
+        "session_product_den": 644660,
+        "session_product_cart_num": 49459,
+        "session_product_purchase_num": 23672,
+        "excluded_late_view_anchors": 23273,
+        "excluded_late_cart_anchors": 2251,
+        "excluded_open_session_groups": 31
+      },
+      "60": {
+        "user_den": 407283,
+        "user_num": 21304,
+        "session_den": 494301,
+        "session_num": 24099,
+        "view7_den": 532888,
+        "view_cart7_num": 42526,
+        "view_cart_purchase7_num": 21246,
+        "cart7_den": 43298,
+        "cart_purchase7_num": 21631,
+        "session_product_den": 635914,
+        "session_product_cart_num": 49600,
+        "session_product_purchase_num": 24095,
+        "excluded_late_view_anchors": 23273,
+        "excluded_late_cart_anchors": 2251,
+        "excluded_open_session_groups": 64
+      }
+    },
+    "all_raw_canonical_contracted_counts_equal_at_both_gaps": true
+  },
+  "canonical_event_mix": {
+    "cart": 54032,
+    "purchase": 37343,
+    "view": 793099
+  },
+  "private_cluster_vectors": [
+    {
+      "cluster": "user_id",
+      "clusters": 406842,
+      "path": "data/work/08_user_id_counts.csv",
+      "sha256": "ba1abf11957d8f6c3b482c0965c6ac58f1cf83cb549315425b207da2f3438129",
+      "columns": [
+        "n",
+        "y",
+        "n0",
+        "y0",
+        "n1",
+        "y1",
+        "n2",
+        "y2",
+        "n3",
+        "y3"
+      ]
+    },
+    {
+      "cluster": "product_id",
+      "clusters": 53452,
+      "path": "data/work/08_product_id_counts.csv",
+      "sha256": "dd8a2cabac4c5daa74ace5d41dac38ab27cfb95fb128ce9d0b8fab4f526b34d9",
+      "columns": [
+        "n",
+        "y",
+        "n0",
+        "y0",
+        "n1",
+        "y1",
+        "n2",
+        "y2",
+        "n3",
+        "y3"
+      ]
+    }
+  ],
+  "code_hashes": {
+    "src/run_robustness.py": "326ed66c953b69d49a8d57aa3b5c4267d08074519509363a231987d0135aeb7f",
+    "analysis.sql": "cfd11e3b6368a20f7f519e9be658f41f558b7d74b2ad3bacd4763095a145f0ec",
+    "docs/08_robustness_plan.json": "f328dd2ca94bfd55f93f4112505869e086707991fad79a4244aa35ae3b5dc15f",
+    "src/contract_metrics.py": "fb686f5c7268fb9e7050890a1adefd5898e1457a6c0404badc76a469c1e0fa5d"
+  }
+}

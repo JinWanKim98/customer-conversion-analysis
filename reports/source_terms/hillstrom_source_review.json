@@ -1,0 +1,10 @@
+{
+  "review_date": "2026-10-28",
+  "author_url": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+  "observed_author_context": "Public analysis challenge; author invites analysis and sharing findings.",
+  "raw_redistribution_license_captured": false,
+  "catalog_url": "https://www.tensorflow.org/datasets/catalog/hillstrom",
+  "catalog_footer_is_dataset_license": false,
+  "mirror_checksum_reference": "https://www.uplift-modeling.com/en/latest/_modules/sklift/datasets/datasets.html",
+  "decision": "Cite author, catalog and exact mirror. Keep raw file local; downloader lets readers obtain it from the source. Do not claim the loader software license covers the dataset."
+}
