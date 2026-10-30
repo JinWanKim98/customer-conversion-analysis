@@ -14,6 +14,7 @@ I used two public datasets and analysed them separately: REES46 event logs from 
 - [SQL queries](analysis.sql)
 - [Power BI report](Customer_Conversion.pbix)
 - [Dashboard pages as PDF](Dashboard.pdf)
+- [Full result tables (PDF)](Tables.pdf)
 - [Decision memo](reports/11_executive_memo.md)
 
 ## Data and scope
@@ -34,26 +35,30 @@ pip install -r requirements.txt
 
 Report pages are below. Click an image to open its full resolution.
 
-### 01 Overview
+### 01 Customer journeys
 
 [![Dashboard page](images/01_overview.png)](images/01_overview.png)
 
-### 02 Metrics Quality
+### 02 Measurement and data quality
 
 [![Dashboard page](images/02_metrics_quality.png)](images/02_metrics_quality.png)
 
-### 03 Category Funnel
+### 03 Purchase journeys by category
 
 [![Dashboard page](images/03_category_funnel.png)](images/03_category_funnel.png)
 
-### 04 Price Funnel
+### 04 Purchase journeys by price
 
 [![Dashboard page](images/04_price_funnel.png)](images/04_price_funnel.png)
 
-### 05 Email Experiment
+### 05 The historical email experiment
 
 [![Dashboard page](images/05_email_experiment.png)](images/05_email_experiment.png)
 
-### 06 Experiment Effects
+### 06 Email effects against no email
 
 [![Dashboard page](images/06_experiment_effects.png)](images/06_experiment_effects.png)
+
+## Dashboard reading notes
+
+Counts use the units shown in the rate definitions. Category groups can overlap. The category page shows the 15 largest categories by eligible journey groups. All 108 categories are in the [full result tables](Tables.pdf). Price bands are ordered by their numeric lower bound. The purchase-effect chart uses the same marginal Newcombe 95% intervals as the results table; the Holm-adjusted p-values below 0.001 are displayed as `<0.001`. Spend effects remain exploratory.
